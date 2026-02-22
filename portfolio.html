@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>كيرلس ثروت - مهندس برمجيات | Clyxa</title>
+    <title>كيرلس ثروت - مهندس برمجيات</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -48,7 +48,12 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: 2rem;
+            padding: 2rem 2rem 5rem;
+        }
+
+        .hero::before,
+        .hero::after {
+            pointer-events: none;
         }
 
         .hero::before {
@@ -169,6 +174,7 @@
             left: 50%;
             transform: translateX(-50%);
             animation: bounce 2s infinite;
+            z-index: 20;
         }
 
         @keyframes bounce {
@@ -360,16 +366,23 @@
         /* Skills Section */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
         }
 
         .skill-card {
             background: linear-gradient(135deg, var(--white) 0%, var(--bg-light) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            padding: 1rem 1rem 0.9rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
             position: relative;
@@ -416,37 +429,37 @@
         }
 
         .skill-icon {
-            width: 50px;
-            height: 50px;
+            width: 36px;
+            height: 36px;
             background: var(--primary-gradient);
-            border-radius: 10px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 0.8rem;
-            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
         .skill-name {
-            font-size: 1.15rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.45rem;
             font-family: 'Tajawal', sans-serif;
         }
 
         .skill-items {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
+            gap: 0.3rem;
         }
 
         .skill-tag {
             background: var(--bg-light);
             color: var(--text-secondary);
-            padding: 0.35rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.72rem;
             border: 1px solid var(--border-color);
             transition: all 0.3s ease;
         }
@@ -615,35 +628,93 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .timeline::before {
-                right: 0;
-                transform: none;
+
+            /* Hero */
+            .hero {
+                padding: 5rem 1rem 5rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero img {
+                width: 120px;
+                height: 160px;
+            }
+            .hero .stats {
+                gap: 1.5rem;
+            }
+            .stat-number { font-size: 1.8rem; }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            .hero-btn {
+                width: 80%;
+                text-align: center;
             }
 
-            .timeline-content {
-                width: calc(100% - 50px);
-                margin-left: 50px !important;
-                margin-right: 0 !important;
-            }
-
-            .timeline-dot {
-                right: 0;
+            /* Lang toggle */
+            #lang-toggle {
+                top: auto;
+                bottom: 1.2rem;
+                left: 50%;
                 transform: translateX(-50%);
             }
 
-            .hero .stats {
-                gap: 2rem;
+            /* Timeline */
+            .timeline::before {
+                right: 12px;
+                transform: none;
+            }
+            .timeline-content {
+                width: calc(100% - 40px);
+                margin-right: 35px !important;
+                margin-left: 0 !important;
+            }
+            .timeline-dot {
+                right: 3px;
+                transform: none;
             }
 
-            .stat-number {
-                font-size: 2rem;
+            /* Grids */
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
 
+            /* Section titles */
+            .section-title { font-size: 1.5rem; }
+            .section-subtitle { font-size: 0.88rem; }
+
+            /* CTA */
+            .cta-title { font-size: 1.5rem; }
+            .cta-text { font-size: 0.9rem; }
             .cta-buttons {
                 flex-direction: column;
-                align-items: stretch;
+                align-items: center;
             }
+            .cta-buttons .btn { width: 80%; text-align: center; }
+
+            /* Container padding */
+            .container { padding: 0 1rem; }
+            section { padding: 2rem 0; }
+
         }
+
+        @media (max-width: 480px) {
+            .achievements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 { font-size: 1.7rem; }
+            .stat-number { font-size: 1.5rem; }
+        }
+
 
         /* Background Pattern */
         .bg-pattern {
@@ -972,60 +1043,338 @@
                 text-align: center;
             }
         }
+
+        /* Hero Buttons */
+        .hero-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.9s forwards;
+        }
+        .hero-btn {
+            padding: 0.75rem 2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+        .hero-btn-primary {
+            background: var(--primary-gradient);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        .hero-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.55);
+        }
+        .hero-btn-outline {
+            background: transparent;
+            color: #a5b4fc;
+            border-color: rgba(165, 180, 252, 0.5);
+        }
+        .hero-btn-outline:hover {
+            background: rgba(165, 180, 252, 0.1);
+            border-color: #a5b4fc;
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about-section { padding: 4rem 0; }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-photo { text-align: center; }
+        .about-photo img {
+            width: 200px;
+            height: 260px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            border: 4px solid rgba(102, 126, 234, 0.2);
+        }
+        .about-photo-placeholder {
+            width: 200px;
+            height: 260px;
+            border-radius: 20px;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        }
+        .about-tag {
+            display: inline-block;
+            background: var(--primary-gradient);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .about-text h3 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: 'Tajawal', sans-serif;
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+            font-size: 0.97rem;
+            margin-bottom: 0.9rem;
+        }
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.5rem;
+        }
+        .highlight-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, #f0f4ff, #e6f0ff);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            padding: 0.45rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-purple);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .service-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        .service-card:hover::after { transform: scaleX(1); }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+            border-color: var(--primary-blue);
+        }
+        .service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .service-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            font-family: 'Tajawal', sans-serif;
+        }
+        .service-desc {
+            color: var(--text-secondary);
+            font-size: 0.87rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-highlights { justify-content: center; }
+        }
+
+        /* Lang Toggle */
+        #lang-toggle {
+            position: fixed;
+            top: 1.2rem;
+            left: 1.2rem;
+            z-index: 9999;
+            background: var(--primary-gradient);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.3rem;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.45);
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+        #lang-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.55);
+        }
     </style>
 </head>
 <body>
+    <button id="lang-toggle" onclick="toggleLang()">English</button>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>كيرلس ثروت</h1>
-            <p class="subtitle">مهندس برمجيات محترف | خبرة +12 سنة</p>
+            <h1 data-i18n="hero-name">كيرلس ثروت</h1>
+            <p class="subtitle" data-i18n="hero-subtitle">مهندس برمجيات محترف | خبرة +12 سنة</p>
             <img src="images/Kyrellos_Formal.jpg" alt="كيرلس ثروت - مهندس برمجيات" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iI2NjN0U5YSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjE1cHgiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='">
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number">12+</div>
-                    <div class="stat-label">سنة خبرة</div>
+                    <div class="stat-label" data-i18n="stat-1">سنة خبرة</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">50+</div>
-                    <div class="stat-label">مشروع منجز</div>
+                    <div class="stat-label" data-i18n="stat-2">مشروع منجز</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">5</div>
-                    <div class="stat-label">شركات دولية</div>
+                    <div class="stat-label" data-i18n="stat-3">شركات دولية</div>
                 </div>
             </div>
+            <div class="hero-buttons">
+                <a href="mailto:keroo111@gmail.com" class="hero-btn hero-btn-primary" data-i18n="btn-start">🚀 ابدأ مشروعك معي</a>
+                <a href="#about" class="hero-btn hero-btn-outline" data-i18n="btn-about">👤 اعرف أكثر عني</a>
+            </div>
         </div>
-        <a href="#achievements" class="scroll-indicator">
+        <a href="#about" class="scroll-indicator">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
         </a>
     </section>
 
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="about-title">من أنا</h2>
+                <p class="section-subtitle" data-i18n="about-subtitle">تعرف علي أكثر وعلى القيمة التي يمكنني تقديمها لمشروعك</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-photo">
+                    <img src="images/Kyrellos_Formal.jpg" alt="كيرلس ثروت" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="about-photo-placeholder" style="display:none;">👨‍💻</div>
+                </div>
+                <div class="about-text">
+                    <span class="about-tag" data-i18n="about-tag">Software Development Lead · .NET & Angular Expert</span>
+                    <h3 data-i18n="about-h3">مهندس برمجيات بخبرة +12 سنة في بناء أنظمة حقيقية</h3>
+                    <p data-i18n="about-p1">
+                        اسمي كيرلس ثروت، مهندس برمجيات محترف بخبرة تزيد عن 12 عاماً في تطوير حلول تقنية متكاملة لشركات في مصر والولايات المتحدة. حالياً أعمل كـ <strong>Software Development Lead</strong> في إيفا فارما، وأقود فريقاً من 9 مطورين.
+                    </p>
+                    <p data-i18n="about-p2">
+                        أتخصص في بناء تطبيقات الويب باستخدام <strong>.NET / ASP.NET Core</strong> و<strong>Angular</strong>، مع خبرة عميقة في تصميم قواعد البيانات، الـ RESTful APIs، والأنظمة السحابية على <strong>Azure</strong> و<strong>AWS</strong>.
+                    </p>
+                    <div class="about-highlights">
+                        <span class="highlight-badge" data-i18n="badge-1">✅ فريق 9 مطورين تحت قيادتي</span>
+                        <span class="highlight-badge" data-i18n="badge-2">🌍 خبرة مع شركات أمريكية عن بُعد</span>
+                        <span class="highlight-badge" data-i18n="badge-3">🏭 قطاعات: دواء · تجارة · تسويق</span>
+                        <span class="highlight-badge" data-i18n="badge-4">🗣️ عربي · English (Proficient)</span>
+                        <span class="highlight-badge" data-i18n="badge-5">📍 الإسكندرية — متاح للعمل عن بُعد</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="bg-pattern">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-i18n="services-title">ماذا أقدم لك</h2>
+                <p class="section-subtitle" data-i18n="services-subtitle">خدمات تقنية احترافية مبنية على خبرة حقيقية وشركات عالمية</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3 class="service-title" data-i18n="s1-title">تطوير تطبيقات الويب</h3>
+                    <p class="service-desc" data-i18n="s1-desc">بناء تطبيقات ويب كاملة من الـ Backend للـ Frontend باستخدام ASP.NET Core + Angular بمعايير احترافية عالية</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3 class="service-title" data-i18n="s2-title">تصميم وبناء الـ APIs</h3>
+                    <p class="service-desc" data-i18n="s2-desc">تصميم RESTful APIs قابلة للتوسع وسهلة التكامل مع أي نظام أو تطبيق موبايل — بأمان وأداء عالي</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🗄️</div>
+                    <h3 class="service-title" data-i18n="s3-title">تصميم قواعد البيانات</h3>
+                    <p class="service-desc" data-i18n="s3-desc">تصميم وتحسين قواعد بيانات SQL Server / MySQL / MongoDB مع كتابة Stored Procedures وتحسين الأداء</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3 class="service-title" data-i18n="s4-title">حلول Azure / AWS السحابية</h3>
+                    <p class="service-desc" data-i18n="s4-desc">نشر التطبيقات على Cloud مع إعداد CI/CD pipelines وإدارة البنية التحتية باستخدام DevOps</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3 class="service-title" data-i18n="s5-title">تحديث الأنظمة القديمة</h3>
+                    <p class="service-desc" data-i18n="s5-desc">ترقية وتحديث الأنظمة القديمة وتحويلها إلى Microservices حديثة دون توقف مع الحفاظ على البيانات</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧭</div>
+                    <h3 class="service-title" data-i18n="s6-title">استشارات تقنية وقيادة</h3>
+                    <p class="service-desc" data-i18n="s6-desc">مراجعة معمارية الأنظمة، إرشاد الفرق التقنية، ووضع خارطة طريق تقنية واضحة لمشروعك</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Achievements Section -->
     <section id="achievements" class="bg-pattern">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">الإنجازات الرئيسية</h2>
-                <p class="section-subtitle">نتائج حقيقية وقابلة للقياس تم تحقيقها خلال مسيرتي المهنية</p>
+                <h2 class="section-title" data-i18n="ach-title">الإنجازات الرئيسية</h2>
+                <p class="section-subtitle" data-i18n="ach-subtitle">نتائج حقيقية وقابلة للقياس تم تحقيقها خلال مسيرتي المهنية</p>
             </div>
             <div class="achievements-grid">
                 <div class="achievement-card">
                     <div class="achievement-number">30%</div>
-                    <div class="achievement-label">زيادة إنتاجية الفريق</div>
+                    <div class="achievement-label" data-i18n="ach-1">زيادة إنتاجية الفريق</div>
                 </div>
                 <div class="achievement-card">
                     <div class="achievement-number">20%</div>
-                    <div class="achievement-label">تحسين كفاءة التسليم</div>
+                    <div class="achievement-label" data-i18n="ach-2">تحسين كفاءة التسليم</div>
                 </div>
                 <div class="achievement-card">
                     <div class="achievement-number">25%</div>
-                    <div class="achievement-label">تحسين أداء الأنظمة</div>
+                    <div class="achievement-label" data-i18n="ach-3">تحسين أداء الأنظمة</div>
                 </div>
                 <div class="achievement-card">
                     <div class="achievement-number">15%</div>
-                    <div class="achievement-label">تقليل الأخطاء</div>
+                    <div class="achievement-label" data-i18n="ach-4">تقليل الأخطاء</div>
                 </div>
             </div>
         </div>
@@ -1035,21 +1384,21 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">الخبرات العملية</h2>
-                <p class="section-subtitle">رحلة مهنية حافلة بالإنجازات والنمو المستمر</p>
+                <h2 class="section-title" data-i18n="exp-title">الخبرات العملية</h2>
+                <p class="section-subtitle" data-i18n="exp-subtitle">رحلة مهنية حافلة بالإنجازات والنمو المستمر</p>
             </div>
             <div class="timeline">
                 <!-- Eva Pharma - Lead -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="job-title">قائد تطوير البرمجيات</h3>
-                        <div class="company">إيفا فارما | Eva Pharma</div>
-                        <span class="duration">أغسطس 2022 - حتى الآن</span>
+                        <h3 class="job-title" data-i18n="j1-title">قائد تطوير البرمجيات</h3>
+                        <div class="company" data-i18n="j1-company">إيفا فارما | Eva Pharma</div>
+                        <span class="duration" data-i18n="j1-duration">أغسطس 2022 - حتى الآن</span>
                         <ul class="achievements">
-                            <li>إدارة فريق من 9 مطورين مع تحقيق زيادة 30% في الإنتاجية</li>
-                            <li>إدارة مشاريع متعددة مع الالتزام الكامل بالمواعيد ومعايير الجودة</li>
-                            <li>تصميم وتنفيذ قواعد بيانات متقدمة لتطبيقات الويب</li>
+                            <li data-i18n="j1-a1">إدارة فريق من 9 مطورين مع تحقيق زيادة 30% في الإنتاجية</li>
+                            <li data-i18n="j1-a2">إدارة مشاريع متعددة مع الالتزام الكامل بالمواعيد ومعايير الجودة</li>
+                            <li data-i18n="j1-a3">تصميم وتنفيذ قواعد بيانات متقدمة لتطبيقات الويب</li>
                         </ul>
                     </div>
                 </div>
@@ -1058,13 +1407,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="job-title">مهندس برمجيات أول</h3>
-                        <div class="company">إيفا فارما | Eva Pharma</div>
-                        <span class="duration">2021 - 2022</span>
+                        <h3 class="job-title" data-i18n="j2-title">مهندس برمجيات أول</h3>
+                        <div class="company" data-i18n="j2-company">إيفا فارما | Eva Pharma</div>
+                        <span class="duration" data-i18n="j2-duration">2021 - 2022</span>
                         <ul class="achievements">
-                            <li>قيادة تطبيق Microsoft DevOps Azure بتحسين 20% في الكفاءة</li>
-                            <li>تطوير تطبيقات قابلة للتوسع بمنهجيات Agile</li>
-                            <li>تحسين أداء الأكواد بنسبة 25%</li>
+                            <li data-i18n="j2-a1">قيادة تطبيق Microsoft DevOps Azure بتحسين 20% في الكفاءة</li>
+                            <li data-i18n="j2-a2">تطوير تطبيقات قابلة للتوسع بمنهجيات Agile</li>
+                            <li data-i18n="j2-a3">تحسين أداء الأكواد بنسبة 25%</li>
                         </ul>
                     </div>
                 </div>
@@ -1073,13 +1422,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="job-title">مهندس برمجيات أول</h3>
-                        <div class="company">Going Infinity</div>
-                        <span class="duration">نوفمبر 2021 - أبريل 2022</span>
+                        <h3 class="job-title" data-i18n="j3-title">مهندس برمجيات أول</h3>
+                        <div class="company" data-i18n="j3-company">Going Infinity</div>
+                        <span class="duration" data-i18n="j3-duration">نوفمبر 2021 - أبريل 2022</span>
                         <ul class="achievements">
-                            <li>تطوير نظام التحكم في المستودعات بزيادة 20% في الكفاءة</li>
-                            <li>تقليل الأخطاء بعد النشر بنسبة 15%</li>
-                            <li>استخدام GIT للتحكم في الإصدارات بكفاءة عالية</li>
+                            <li data-i18n="j3-a1">تطوير نظام التحكم في المستودعات بزيادة 20% في الكفاءة</li>
+                            <li data-i18n="j3-a2">تقليل الأخطاء بعد النشر بنسبة 15%</li>
+                            <li data-i18n="j3-a3">استخدام GIT للتحكم في الإصدارات بكفاءة عالية</li>
                         </ul>
                     </div>
                 </div>
@@ -1088,13 +1437,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="job-title">قائد فريق هندسة البرمجيات</h3>
-                        <div class="company">Premitek</div>
-                        <span class="duration">أبريل 2017 - نوفمبر 2021</span>
+                        <h3 class="job-title" data-i18n="j4-title">قائد فريق هندسة البرمجيات</h3>
+                        <div class="company" data-i18n="j4-company">Premitek</div>
+                        <span class="duration" data-i18n="j4-duration">أبريل 2017 - نوفمبر 2021</span>
                         <ul class="achievements">
-                            <li>إدارة دورة التطوير الكاملة لمشاريع متعددة</li>
-                            <li>تقليل التصعيدات بنسبة 20% من خلال إدارة فعالة</li>
-                            <li>إدارة البوابة الإلكترونية للشركة وتحسين أدائها</li>
+                            <li data-i18n="j4-a1">إدارة دورة التطوير الكاملة لمشاريع متعددة</li>
+                            <li data-i18n="j4-a2">تقليل التصعيدات بنسبة 20% من خلال إدارة فعالة</li>
+                            <li data-i18n="j4-a3">إدارة البوابة الإلكترونية للشركة وتحسين أدائها</li>
                         </ul>
                     </div>
                 </div>
@@ -1103,13 +1452,13 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="job-title">مهندس برمجيات</h3>
-                        <div class="company">Kiva Group (عن بُعد - الولايات المتحدة)</div>
-                        <span class="duration">أغسطس 2010 - ديسمبر 2013</span>
+                        <h3 class="job-title" data-i18n="j5-title">مهندس برمجيات</h3>
+                        <div class="company" data-i18n="j5-company">Kiva Group (عن بُعد - الولايات المتحدة)</div>
+                        <span class="duration" data-i18n="j5-duration">أغسطس 2010 - ديسمبر 2013</span>
                         <ul class="achievements">
-                            <li>بناء نظام Single Sign-On (SSO) متقدم</li>
-                            <li>تصميم قواعد البيانات وكتابة الإجراءات المخزنة</li>
-                            <li>العمل عن بُعد مع فرق دولية بنجاح</li>
+                            <li data-i18n="j5-a1">بناء نظام Single Sign-On (SSO) متقدم</li>
+                            <li data-i18n="j5-a2">تصميم قواعد البيانات وكتابة الإجراءات المخزنة</li>
+                            <li data-i18n="j5-a3">العمل عن بُعد مع فرق دولية بنجاح</li>
                         </ul>
                     </div>
                 </div>
@@ -1121,13 +1470,13 @@
     <section class="bg-pattern">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">المهارات التقنية</h2>
-                <p class="section-subtitle">تقنيات حديثة وخبرة عميقة في أحدث أدوات التطوير</p>
+                <h2 class="section-title" data-i18n="skills-title">المهارات التقنية</h2>
+                <p class="section-subtitle" data-i18n="skills-subtitle">تقنيات حديثة وخبرة عميقة في أحدث أدوات التطوير</p>
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
                     <div class="skill-icon">💻</div>
-                    <h3 class="skill-name">لغات البرمجة</h3>
+                    <h3 class="skill-name" data-i18n="sk1">لغات البرمجة</h3>
                     <div class="skill-items">
                         <span class="skill-tag">C#</span>
                         <span class="skill-tag">JavaScript</span>
@@ -1136,7 +1485,7 @@
 
                 <div class="skill-card">
                     <div class="skill-icon">🌐</div>
-                    <h3 class="skill-name">تقنيات الويب</h3>
+                    <h3 class="skill-name" data-i18n="sk2">تقنيات الويب</h3>
                     <div class="skill-items">
                         <span class="skill-tag">ASP.NET Core</span>
                         <span class="skill-tag">MVC</span>
@@ -1149,7 +1498,7 @@
 
                 <div class="skill-card">
                     <div class="skill-icon">🗄️</div>
-                    <h3 class="skill-name">قواعد البيانات</h3>
+                    <h3 class="skill-name" data-i18n="sk3">قواعد البيانات</h3>
                     <div class="skill-items">
                         <span class="skill-tag">SQL Server</span>
                         <span class="skill-tag">MySQL</span>
@@ -1159,7 +1508,7 @@
 
                 <div class="skill-card">
                     <div class="skill-icon">☁️</div>
-                    <h3 class="skill-name">المنصات السحابية</h3>
+                    <h3 class="skill-name" data-i18n="sk4">المنصات السحابية</h3>
                     <div class="skill-items">
                         <span class="skill-tag">Microsoft Azure</span>
                         <span class="skill-tag">AWS</span>
@@ -1168,7 +1517,7 @@
 
                 <div class="skill-card">
                     <div class="skill-icon">🔧</div>
-                    <h3 class="skill-name">أدوات التطوير</h3>
+                    <h3 class="skill-name" data-i18n="sk5">أدوات التطوير</h3>
                     <div class="skill-items">
                         <span class="skill-tag">Git</span>
                         <span class="skill-tag">DevOps</span>
@@ -1179,12 +1528,32 @@
 
                 <div class="skill-card">
                     <div class="skill-icon">🚀</div>
-                    <h3 class="skill-name">منهجيات العمل</h3>
+                    <h3 class="skill-name" data-i18n="sk6">منهجيات العمل</h3>
                     <div class="skill-items">
                         <span class="skill-tag">Agile</span>
                         <span class="skill-tag">Scrum</span>
                         <span class="skill-tag">Microservices</span>
                         <span class="skill-tag">RESTful APIs</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">🗣️</div>
+                    <h3 class="skill-name" data-i18n="sk7">اللغات</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">العربية (لغة أم)</span>
+                        <span class="skill-tag">English (Proficient)</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-icon">👥</div>
+                    <h3 class="skill-name" data-i18n="sk8">قيادة الفرق</h3>
+                    <div class="skill-items">
+                        <span class="skill-tag">Team Leadership</span>
+                        <span class="skill-tag">Code Review</span>
+                        <span class="skill-tag">Mentoring</span>
+                        <span class="skill-tag">Sprint Planning</span>
                     </div>
                 </div>
             </div>
@@ -1195,8 +1564,8 @@
     <section>
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">المشاريع البرمجية</h2>
-                <p class="section-subtitle">مشاريع حقيقية تم تطويرها وإطلاقها بنجاح</p>
+                <h2 class="section-title" data-i18n="proj-title">المشاريع البرمجية</h2>
+                <p class="section-subtitle" data-i18n="proj-subtitle">مشاريع حقيقية تم تطويرها وإطلاقها بنجاح</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
@@ -1204,12 +1573,12 @@
                         <div class="project-icon">🌐</div>
                         <img class="project-screenshot" src="images/clyxa-main.png" alt="Clyxa Main Site Screenshot">
                         <div class="project-overlay">
-                            <a href="https://www.clyxa.org/" target="_blank" class="project-link">زيارة الموقع →</a>
+                            <a href="https://www.clyxa.org/" target="_blank" class="project-link" data-i18n="p1-link">زيارة الموقع →</a>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Clyxa - الموقع الرئيسي</h3>
-                        <p class="project-description">موقع وكالة التسويق الرقمي بتصميم عصري ومتجاوب بالكامل، يعرض الخدمات والباقات بشكل تفاعلي واحترافي</p>
+                        <h3 class="project-title" data-i18n="p1-title">Clyxa - الموقع الرئيسي</h3>
+                        <p class="project-description" data-i18n="p1-desc">موقع وكالة التسويق الرقمي بتصميم عصري ومتجاوب بالكامل، يعرض الخدمات والباقات بشكل تفاعلي واحترافي</p>
                         <div class="project-tags">
                             <span class="project-tag">HTML/CSS</span>
                             <span class="project-tag">JavaScript</span>
@@ -1224,12 +1593,12 @@
                         <div class="project-icon">⚙️</div>
                         <img class="project-screenshot" src="images/clyxa-admin.png" alt="Clyxa Admin Panel Screenshot">
                         <div class="project-overlay">
-                            <a href="https://admin.clyxa.org/" target="_blank" class="project-link">زيارة النظام →</a>
+                            <a href="https://admin.clyxa.org/" target="_blank" class="project-link" data-i18n="p2-link">زيارة النظام →</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Clyxa Admin Panel</h3>
-                        <p class="project-description">لوحة تحكم متكاملة لإدارة العملاء والمشاريع والحملات التسويقية مع نظام إدارة محتوى قوي</p>
+                        <p class="project-description" data-i18n="p2-desc">لوحة تحكم متكاملة لإدارة العملاء والمشاريع والحملات التسويقية مع نظام إدارة محتوى قوي</p>
                         <div class="project-tags">
                             <span class="project-tag">Node.js</span>
                             <span class="project-tag">Supabase</span>
@@ -1243,12 +1612,12 @@
                     <div class="project-image">
                         <div class="project-icon">📊</div>
                         <div class="project-overlay">
-                            <a href="https://campaign.clyxa.org/s/--urjw" target="_blank" class="project-link">زيارة النظام →</a>
+                            <a href="https://campaign.clyxa.org/s/--urjw" target="_blank" class="project-link" data-i18n="p3-link">زيارة النظام →</a>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3 class="project-title">Campaign Management System</h3>
-                        <p class="project-description">نظام متقدم لإدارة وتتبع الحملات التسويقية مع تحليلات مفصلة وتقارير أداء في الوقت الفعلي</p>
+                        <h3 class="project-title" data-i18n="p3-title">Campaign Management System</h3>
+                        <p class="project-description" data-i18n="p3-desc">نظام متقدم لإدارة وتتبع الحملات التسويقية مع تحليلات مفصلة وتقارير أداء في الوقت الفعلي</p>
                         <div class="project-tags">
                             <span class="project-tag">Node.js</span>
                             <span class="project-tag">Supabase DB</span>
@@ -1261,95 +1630,185 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <!-- About Section -->
-                <div class="footer-about">
-                    <h3 class="footer-logo">كيرلس ثروت</h3>
-                    <p class="footer-description">
-                        مهندس برمجيات محترف بخبرة تزيد عن 12 عاماً في تطوير البرمجيات والأنظمة التقنية. 
-                        متخصص في .NET، Angular، وتقنيات السحابة.
-                    </p>
-                    <div class="footer-social">
-                        <a href="https://www.linkedin.com/in/kyrellos-tharwat/" class="social-link" target="_blank" title="LinkedIn">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/kyrellos-tharwat" class="social-link" target="_blank" title="GitHub">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:keroo111@gmail.com" class="social-link" title="Email">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                            </svg>
-                        </a>
-                        <a href="tel:+201283931081" class="social-link" title="Phone">
-                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20 22.621l-3.521-6.795c-.008.004-1.974.97-2.064 1.011-2.24 1.086-6.799-7.82-4.609-8.994l2.083-1.026-3.493-6.817-2.106 1.039c-7.202 3.755 4.233 25.982 11.6 22.615.121-.055 2.102-1.029 2.11-1.033z"/>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Contact Section -->
-                <div class="footer-contact">
-                    <h3 class="footer-title">تواصل معي</h3>
-                    <ul class="contact-list">
-                        <li>
-                            <a href="tel:+201283931081" class="contact-link">
-                                <span>+20 128 393 1081</span>
-                                <div class="contact-icon-box">📱</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:keroo111@gmail.com" class="contact-link">
-                                <span>keroo111@gmail.com</span>
-                                <div class="contact-icon-box">✉️</div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" class="contact-link">
-                                <span>LinkedIn Profile</span>
-                                <div class="contact-icon-box">💼</div>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="contact-link" style="cursor: default;">
-                                <span>الإسكندرية، مصر</span>
-                                <div class="contact-icon-box">📍</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 <a href="#hero">Kyrellos Tharwat</a>. جميع الحقوق محفوظة.</p>
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title" data-i18n="cta-title">هل لديك مشروع تقني؟ 🚀</h2>
+            <p class="cta-text" data-i18n="cta-text">
+                سواء كنت تحتاج تطبيق ويب من الصفر، تحسين نظام قائم، أو استشارة تقنية —
+                أنا مستعد لمساعدتك بخبرة +12 سنة وفريق محترف.
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:keroo111@gmail.com" class="btn btn-primary" data-i18n="cta-btn1">📧 ابعت إيميل الآن</a>
+                <a href="tel:+201283931081" class="btn btn-outline" data-i18n="cta-btn2">📱 اتصل بي مباشرة</a>
+                <a href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" class="btn btn-outline" data-i18n="cta-btn3">💼 LinkedIn</a>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <div style="background: var(--dark-gradient); text-align: center; padding: 1rem; color: #a5b4fc; font-size: 0.85rem; direction: ltr;">
+        <span data-i18n="footer-copy">&copy; 2026 Kyrellos Tharwat. All rights reserved.</span>
+    </div>
 
     <script>
+        // ===== Translations =====
+        const translations = {
+            ar: {
+                'hero-name': 'كيرلس ثروت',
+                'hero-subtitle': 'مهندس برمجيات محترف | خبرة +12 سنة',
+                'stat-1': 'سنة خبرة', 'stat-2': 'مشروع منجز', 'stat-3': 'شركات دولية',
+                'btn-start': '🚀 ابدأ مشروعك معي', 'btn-about': '👤 اعرف أكثر عني',
+                'about-title': 'من أنا',
+                'about-subtitle': 'تعرف علي أكثر وعلى القيمة التي يمكنني تقديمها لمشروعك',
+                'about-tag': 'Software Development Lead · .NET & Angular Expert',
+                'about-h3': 'مهندس برمجيات بخبرة +12 سنة في بناء أنظمة حقيقية',
+                'about-p1': 'اسمي كيرلس ثروت، مهندس برمجيات محترف بخبرة تزيد عن 12 عاماً في تطوير حلول تقنية متكاملة لشركات في مصر والولايات المتحدة. حالياً أعمل كـ <strong>Software Development Lead</strong> في إيفا فارما، وأقود فريقاً من 9 مطورين.',
+                'about-p2': 'أتخصص في بناء تطبيقات الويب باستخدام <strong>.NET / ASP.NET Core</strong> و<strong>Angular</strong>، مع خبرة عميقة في تصميم قواعد البيانات، الـ RESTful APIs، والأنظمة السحابية على <strong>Azure</strong> و<strong>AWS</strong>.',
+                'badge-1': '✅ فريق 9 مطورين تحت قيادتي', 'badge-2': '🌍 خبرة مع شركات أمريكية عن بُعد',
+                'badge-3': '🏭 قطاعات: دواء · تجارة · تسويق', 'badge-4': '🗣️ عربي · English (Proficient)',
+                'badge-5': '📍 الإسكندرية — متاح للعمل عن بُعد',
+                'services-title': 'ماذا أقدم لك',
+                'services-subtitle': 'خدمات تقنية احترافية مبنية على خبرة حقيقية وشركات عالمية',
+                's1-title': 'تطوير تطبيقات الويب', 's1-desc': 'بناء تطبيقات ويب كاملة من الـ Backend للـ Frontend باستخدام ASP.NET Core + Angular بمعايير احترافية عالية',
+                's2-title': 'تصميم وبناء الـ APIs', 's2-desc': 'تصميم RESTful APIs قابلة للتوسع وسهلة التكامل مع أي نظام أو تطبيق موبايل — بأمان وأداء عالي',
+                's3-title': 'تصميم قواعد البيانات', 's3-desc': 'تصميم وتحسين قواعد بيانات SQL Server / MySQL / MongoDB مع كتابة Stored Procedures وتحسين الأداء',
+                's4-title': 'حلول Azure / AWS السحابية', 's4-desc': 'نشر التطبيقات على Cloud مع إعداد CI/CD pipelines وإدارة البنية التحتية باستخدام DevOps',
+                's5-title': 'تحديث الأنظمة القديمة', 's5-desc': 'ترقية وتحديث الأنظمة القديمة وتحويلها إلى Microservices حديثة دون توقف مع الحفاظ على البيانات',
+                's6-title': 'استشارات تقنية وقيادة', 's6-desc': 'مراجعة معمارية الأنظمة، إرشاد الفرق التقنية، ووضع خارطة طريق تقنية واضحة لمشروعك',
+                'ach-title': 'الإنجازات الرئيسية', 'ach-subtitle': 'نتائج حقيقية وقابلة للقياس تم تحقيقها خلال مسيرتي المهنية',
+                'ach-1': 'زيادة إنتاجية الفريق', 'ach-2': 'تحسين كفاءة التسليم', 'ach-3': 'تحسين أداء الأنظمة', 'ach-4': 'تقليل الأخطاء',
+                'exp-title': 'الخبرات العملية', 'exp-subtitle': 'رحلة مهنية حافلة بالإنجازات والنمو المستمر',
+                'j1-title': 'قائد تطوير البرمجيات', 'j1-company': 'إيفا فارما | Eva Pharma', 'j1-duration': 'أغسطس 2022 - حتى الآن',
+                'j1-a1': 'إدارة فريق من 9 مطورين مع تحقيق زيادة 30% في الإنتاجية',
+                'j1-a2': 'إدارة مشاريع متعددة مع الالتزام الكامل بالمواعيد ومعايير الجودة',
+                'j1-a3': 'تصميم وتنفيذ قواعد بيانات متقدمة لتطبيقات الويب',
+                'j2-title': 'مهندس برمجيات أول', 'j2-company': 'إيفا فارما | Eva Pharma', 'j2-duration': '2021 - 2022',
+                'j2-a1': 'قيادة تطبيق Microsoft DevOps Azure بتحسين 20% في الكفاءة',
+                'j2-a2': 'تطوير تطبيقات قابلة للتوسع بمنهجيات Agile', 'j2-a3': 'تحسين أداء الأكواد بنسبة 25%',
+                'j3-title': 'مهندس برمجيات أول', 'j3-company': 'Going Infinity', 'j3-duration': 'نوفمبر 2021 - أبريل 2022',
+                'j3-a1': 'تطوير نظام التحكم في المستودعات بزيادة 20% في الكفاءة',
+                'j3-a2': 'تقليل الأخطاء بعد النشر بنسبة 15%', 'j3-a3': 'استخدام GIT للتحكم في الإصدارات بكفاءة عالية',
+                'j4-title': 'قائد فريق هندسة البرمجيات', 'j4-company': 'Premitek', 'j4-duration': 'أبريل 2017 - نوفمبر 2021',
+                'j4-a1': 'إدارة دورة التطوير الكاملة لمشاريع متعددة',
+                'j4-a2': 'تقليل التصعيدات بنسبة 20% من خلال إدارة فعالة', 'j4-a3': 'إدارة البوابة الإلكترونية للشركة وتحسين أدائها',
+                'j5-title': 'مهندس برمجيات', 'j5-company': 'Kiva Group (عن بُعد - الولايات المتحدة)', 'j5-duration': 'أغسطس 2010 - ديسمبر 2013',
+                'j5-a1': 'بناء نظام Single Sign-On (SSO) متقدم',
+                'j5-a2': 'تصميم قواعد البيانات وكتابة الإجراءات المخزنة', 'j5-a3': 'العمل عن بُعد مع فرق دولية بنجاح',
+                'skills-title': 'المهارات التقنية', 'skills-subtitle': 'تقنيات حديثة وخبرة عميقة في أحدث أدوات التطوير',
+                'sk1': 'لغات البرمجة', 'sk2': 'تقنيات الويب', 'sk3': 'قواعد البيانات', 'sk4': 'المنصات السحابية',
+                'sk5': 'أدوات التطوير', 'sk6': 'منهجيات العمل', 'sk7': 'اللغات', 'sk8': 'قيادة الفرق',
+                'proj-title': 'المشاريع البرمجية', 'proj-subtitle': 'مشاريع حقيقية تم تطويرها وإطلاقها بنجاح',
+                'p1-title': 'Clyxa - الموقع الرئيسي', 'p1-desc': 'موقع وكالة التسويق الرقمي بتصميم عصري ومتجاوب بالكامل، يعرض الخدمات والباقات بشكل تفاعلي واحترافي', 'p1-link': 'زيارة الموقع →',
+                'p2-desc': 'لوحة تحكم متكاملة لإدارة العملاء والمشاريع والحملات التسويقية مع نظام إدارة محتوى قوي', 'p2-link': 'زيارة النظام →',
+                'p3-title': 'Campaign Management System', 'p3-desc': 'نظام متقدم لإدارة وتتبع الحملات التسويقية مع تحليلات مفصلة وتقارير أداء في الوقت الفعلي', 'p3-link': 'زيارة النظام →',
+                'cta-title': 'هل لديك مشروع تقني؟ 🚀',
+                'cta-text': 'سواء كنت تحتاج تطبيق ويب من الصفر، تحسين نظام قائم، أو استشارة تقنية — أنا مستعد لمساعدتك بخبرة +12 سنة وفريق محترف.',
+                'cta-btn1': '📧 ابعت إيميل الآن', 'cta-btn2': '📱 اتصل بي مباشرة', 'cta-btn3': '💼 LinkedIn',
+                'footer-copy': '© 2026 Kyrellos Tharwat. جميع الحقوق محفوظة.',
+                'lang-btn': 'English'
+            },
+            en: {
+                'hero-name': 'Kyrellos Tharwat',
+                'hero-subtitle': 'Professional Software Engineer | 12+ Years Experience',
+                'stat-1': 'Years Experience', 'stat-2': 'Projects Completed', 'stat-3': 'International Companies',
+                'btn-start': '🚀 Start Your Project', 'btn-about': '👤 Learn More About Me',
+                'about-title': 'About Me',
+                'about-subtitle': 'Get to know me and the value I can bring to your project',
+                'about-tag': 'Software Development Lead · .NET & Angular Expert',
+                'about-h3': 'Software Engineer with 12+ Years Building Real-World Systems',
+                'about-p1': 'My name is Kyrellos Tharwat, a professional software engineer with 12+ years of experience delivering integrated technical solutions for companies in Egypt and the United States. I currently serve as <strong>Software Development Lead</strong> at Eva Pharma, leading a team of 9 developers.',
+                'about-p2': 'I specialize in building web applications with <strong>.NET / ASP.NET Core</strong> and <strong>Angular</strong>, with deep expertise in database design, RESTful APIs, and cloud systems on <strong>Azure</strong> and <strong>AWS</strong>.',
+                'badge-1': '✅ Leading a team of 9 developers', 'badge-2': '🌍 Experience with US companies remotely',
+                'badge-3': '🏭 Sectors: Pharma · Commerce · Marketing', 'badge-4': '🗣️ Arabic · English (Proficient)',
+                'badge-5': '📍 Alexandria — Available for remote work',
+                'services-title': 'What I Offer',
+                'services-subtitle': 'Professional technical services built on real experience with global companies',
+                's1-title': 'Web Application Development', 's1-desc': 'Building full-stack web applications from Backend to Frontend using ASP.NET Core + Angular to high professional standards',
+                's2-title': 'API Design & Development', 's2-desc': 'Designing scalable RESTful APIs easy to integrate with any system or mobile app — secure and high-performance',
+                's3-title': 'Database Design', 's3-desc': 'Designing and optimizing SQL Server / MySQL / MongoDB databases with Stored Procedures and performance tuning',
+                's4-title': 'Azure / AWS Cloud Solutions', 's4-desc': 'Deploying applications to the Cloud with CI/CD pipelines setup and infrastructure management using DevOps',
+                's5-title': 'Legacy System Modernization', 's5-desc': 'Upgrading and modernizing legacy systems into modern Microservices without downtime while preserving data integrity',
+                's6-title': 'Technical Consulting & Leadership', 's6-desc': 'System architecture review, technical team guidance, and building a clear technical roadmap for your project',
+                'ach-title': 'Key Achievements', 'ach-subtitle': 'Real, measurable results achieved throughout my professional career',
+                'ach-1': 'Team Productivity Increase', 'ach-2': 'Delivery Efficiency Improvement', 'ach-3': 'System Performance Improvement', 'ach-4': 'Bug Reduction',
+                'exp-title': 'Work Experience', 'exp-subtitle': 'A professional journey full of achievements and continuous growth',
+                'j1-title': 'Software Development Lead', 'j1-company': 'Eva Pharma', 'j1-duration': 'August 2022 - Present',
+                'j1-a1': 'Managing a team of 9 developers with a 30% increase in productivity',
+                'j1-a2': 'Managing multiple projects with full adherence to deadlines and quality standards',
+                'j1-a3': 'Designing and implementing advanced databases for web applications',
+                'j2-title': 'Senior Software Engineer', 'j2-company': 'Eva Pharma', 'j2-duration': '2021 - 2022',
+                'j2-a1': 'Led Microsoft DevOps Azure implementation with a 20% efficiency improvement',
+                'j2-a2': 'Developed scalable applications using Agile methodologies', 'j2-a3': 'Improved code performance by 25%',
+                'j3-title': 'Senior Software Engineer', 'j3-company': 'Going Infinity', 'j3-duration': 'November 2021 - April 2022',
+                'j3-a1': 'Developed warehouse control system with 20% efficiency gain',
+                'j3-a2': 'Reduced post-deployment bugs by 15%', 'j3-a3': 'Used GIT for version control with high efficiency',
+                'j4-title': 'Software Engineering Team Lead', 'j4-company': 'Premitek', 'j4-duration': 'April 2017 - November 2021',
+                'j4-a1': 'Managed the full development lifecycle across multiple projects',
+                'j4-a2': 'Reduced escalations by 20% through effective management', 'j4-a3': 'Managed and improved the company web portal performance',
+                'j5-title': 'Software Engineer', 'j5-company': 'Kiva Group (Remote - USA)', 'j5-duration': 'August 2010 - December 2013',
+                'j5-a1': 'Built an advanced Single Sign-On (SSO) system',
+                'j5-a2': 'Designed databases and wrote stored procedures', 'j5-a3': 'Successfully worked remotely with international teams',
+                'skills-title': 'Technical Skills', 'skills-subtitle': 'Modern technologies and deep expertise in the latest development tools',
+                'sk1': 'Programming Languages', 'sk2': 'Web Technologies', 'sk3': 'Databases', 'sk4': 'Cloud Platforms',
+                'sk5': 'Dev Tools', 'sk6': 'Methodologies', 'sk7': 'Languages', 'sk8': 'Team Leadership',
+                'proj-title': 'Projects', 'proj-subtitle': 'Real projects developed and successfully launched',
+                'p1-title': 'Clyxa - Main Website', 'p1-desc': 'Digital marketing agency website with a modern, fully responsive design showcasing services and packages interactively', 'p1-link': 'Visit Website →',
+                'p2-desc': 'Comprehensive control panel for managing clients, projects, and marketing campaigns with a powerful CMS', 'p2-link': 'Visit System →',
+                'p3-title': 'Campaign Management System', 'p3-desc': 'Advanced system for managing and tracking marketing campaigns with detailed analytics and real-time performance reports', 'p3-link': 'Visit System →',
+                'cta-title': 'Have a Technical Project? 🚀',
+                'cta-text': "Whether you need a web app from scratch, improving an existing system, or technical consulting — I'm ready to help with 12+ years of experience.",
+                'cta-btn1': '📧 Send Email Now', 'cta-btn2': '📱 Call Me Directly', 'cta-btn3': '💼 LinkedIn',
+                'footer-copy': '© 2026 Kyrellos Tharwat. All rights reserved.',
+                'lang-btn': 'عربي'
+            }
+        };
+
+        let currentLang = 'ar';
+
+        function applyLang(lang) {
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            // update page title
+            if (lang === 'en') document.title = 'Kyrellos Tharwat - Software Engineer';
+            else document.title = 'كيرلس ثروت - مهندس برمجيات';
+            // update toggle button label
+            document.getElementById('lang-toggle').textContent = translations[lang]['lang-btn'];
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            applyLang(currentLang);
+        }
+
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
-            en
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -80px 0px' });
+
+        document.querySelectorAll('.timeline-item, .skill-card, .achievement-card, .project-card, .service-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
