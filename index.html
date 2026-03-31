@@ -20,7 +20,7 @@
             top: -100%;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             color: var(--white);
             padding: 0.75rem 1.5rem;
             border-radius: 0 0 var(--radius-md) var(--radius-md);
@@ -89,7 +89,7 @@
             --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.08);
             --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.1);
             --shadow-2xl: 0 18px 48px rgba(0, 0, 0, 0.12);
-            --shadow-accent: 0 4px 20px rgba(102, 126, 234, 0.4);
+            --shadow-accent: 0 4px 20px rgba(20, 184, 166, 0.4);
             --shadow-teal: 0 4px 20px rgba(20, 184, 166, 0.4);
             --shadow-hover: 0 8px 30px rgba(20, 184, 166, 0.15);
             
@@ -139,13 +139,13 @@
         /* Hero Section */
         .hero {
             background: var(--dark-gradient);
-            min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding: var(--space-lg) var(--space-lg) var(--space-2xl);
+            padding: clamp(1.25rem, 3vh, 2rem) var(--space-lg) clamp(2rem, 5vh, 3rem);
         }
 
         .hero::before,
@@ -214,29 +214,72 @@
             }
         }
 
-        .hero img {
-            width: var(--size-md);
-            height: var(--size-lg);
-            border-radius: 50%;
-            margin: var(--space-sm) auto;
+        .hero-avatar-wrapper {
+            position: relative;
             display: block;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            box-shadow: var(--shadow-lg);
+            width: fit-content;
+            margin: 0 auto clamp(0.5rem, 2vh, 1.25rem);
+        }
+
+        .hero-avatar-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--accent-teal) 0deg,
+                var(--accent-light) 90deg,
+                rgba(20, 184, 166, 0.3) 180deg,
+                var(--accent-teal) 360deg
+            );
+            animation: spin 8s linear infinite;
+            z-index: 0;
+        }
+
+        .hero-avatar-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 50%;
+            background: var(--dark-gradient);
+            z-index: 1;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-avatar-wrapper::before {
+                animation: none;
+                background: var(--accent-teal);
+            }
+        }
+
+        .hero img {
+            width: clamp(120px, 14vw, 160px);
+            height: clamp(120px, 14vw, 160px);
+            border-radius: 50%;
+            display: block;
+            border: 3px solid #1e293b;
             object-fit: cover;
-            transition: all 0.3s ease;
+            object-position: top center;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .hero img:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-xl);
+            transform: scale(1.04);
+            box-shadow: 0 0 40px rgba(20, 184, 166, 0.4);
         }
 
         .hero h1 {
             color: var(--accent-light);
-            font-size: var(--text-5xl);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             font-weight: var(--font-black);
             line-height: var(--leading-tight);
-            margin-bottom: var(--space-lg);
+            margin-bottom: clamp(0.4rem, 1.5vh, 1rem);
             animation: entrance 1.2s ease-out;
             font-family: var(--font-display);
         }
@@ -253,14 +296,17 @@
         }
 
         .hero .subtitle {
-            font-size: var(--text-2xl);
+            font-size: clamp(0.9rem, 1.8vw, 1.25rem);
             color: var(--accent-teal);
-            margin-bottom: var(--space-xl);
+            margin-bottom: clamp(0.5rem, 2vh, 1.25rem);
             font-weight: var(--font-normal);
             opacity: 0;
             animation: fadeIn 1s ease-out 0.4s forwards;
-            letter-spacing: 0.5px;
-            line-height: var(--leading-relaxed);
+            letter-spacing: 0.3px;
+            line-height: var(--leading-normal);
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes fadeIn {
@@ -272,7 +318,7 @@
             justify-content: center;
             gap: var(--space-lg);
             flex-wrap: wrap;
-            margin: var(--space-xl) 0;
+            margin: clamp(0.75rem, 2.5vh, 1.75rem) 0;
             opacity: 0;
             animation: statsEntrance 1s ease-out 0.8s forwards;
         }
@@ -296,12 +342,12 @@
         }
 
         .stat-number {
-            font-size: var(--text-4xl);
+            font-size: clamp(1.6rem, 3.5vw, 2.5rem);
             font-weight: var(--font-black);
             color: var(--accent-teal);
             font-family: var(--font-display);
             display: block;
-            margin-bottom: var(--space-xs);
+            margin-bottom: 0.25rem;
         }
 
         .stat-label {
@@ -454,7 +500,7 @@
         }
 
         [dir="rtl"] .service-card:nth-child(3) {
-            border-right-color: var(--primary-purple);
+            border-right-color: var(--accent-teal);
         }
 
         /* Hardening: Image Error States */
@@ -525,8 +571,7 @@
             :root {
                 --accent-teal: #0d9488;
                 --accent-light: #14b8a6;
-                --primary-purple: #5b21b6;
-                --primary-blue: #4338ca;
+                --primary-navy: #0f2744;
             }
             
             .hero-btn-outline, .btn-outline {
@@ -631,42 +676,6 @@
             grid-template-columns: 1fr;
             gap: var(--space-2xl);
             margin-top: var(--space-xl);
-        }
-
-        /* Resume Download Buttons */
-        .resume-download-section {
-            display: flex;
-            gap: var(--space-lg);
-            justify-content: center;
-            margin-bottom: var(--space-xl);
-            flex-wrap: wrap;
-        }
-
-        .resume-download {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-sm);
-            padding: var(--space-md) var(--space-lg);
-            background: var(--primary-gradient);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: var(--radius-md);
-            font-weight: 600;
-            font-family: 'Cairo', sans-serif;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-accent);
-            min-height: 44px;
-            min-width: fit-content;
-        }
-
-        .resume-download:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-accent);
-        }
-
-        .resume-download:focus-visible {
-            outline: 2px solid var(--accent-teal);
-            outline-offset: var(--space-xs);
         }
 
         .resume-icon {
@@ -1099,7 +1108,7 @@
             right: 50%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.15) 0%, transparent 70%);
             transform: translate(50%, -50%);
             animation: pulse 3s ease-in-out infinite;
         }
@@ -1125,7 +1134,7 @@
         }
 
         .cta-text {
-            color: #c7d2fe;
+            color: #a7f3d0;
             font-size: var(--text-lg);
             margin-bottom: 1.5rem;
             line-height: var(--leading-relaxed);
@@ -1155,7 +1164,7 @@
 
         .btn-primary {
             background: var(--white);
-            color: var(--primary-purple);
+            color: var(--accent-teal);
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
         }
 
@@ -1172,7 +1181,7 @@
 
         .btn-outline:hover {
             background: var(--white);
-            color: var(--primary-purple);
+            color: var(--accent-teal);
             transform: translateY(-2px);
         }
 
@@ -1203,19 +1212,19 @@
 
             /* Hero */
             .hero {
-                padding: 4rem 1.2rem 5rem;
+                padding: 1.5rem 1.2rem 2.5rem;
             }
-            .hero h1 {
-                font-size: 1.9rem;
+            .hero-avatar-wrapper {
+                margin-bottom: 0.75rem;
             }
             .hero img {
-                width: 110px;
-                height: 145px;
+                width: 100px;
+                height: 100px;
             }
             .hero .stats {
-                gap: 1.2rem;
+                gap: 1rem;
             }
-            .stat-number { font-size: 1.6rem; }
+            .stat-number { font-size: 1.5rem; }
             .stat-label { font-size: 0.78rem; }
             .hero-buttons {
                 flex-direction: column;
@@ -1386,7 +1395,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.3) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 50%, rgba(20, 184, 166, 0.2) 0%, transparent 60%);
             animation: float 8s ease-in-out infinite;
         }
 
@@ -1403,7 +1412,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background: rgba(102, 126, 234, 0.95);
+            background: rgba(13, 148, 136, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1430,7 +1439,7 @@
 
         .project-link:hover {
             background: var(--white);
-            color: var(--primary-blue);
+            color: var(--accent-teal);
             transform: translateY(-1px);
         }
 
@@ -1460,20 +1469,20 @@
         }
 
         .project-tag {
-            background: linear-gradient(135deg, var(--bg-light) 0%, #e6f0ff 100%);
-            color: var(--primary-purple);
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ccfbf1 100%);
+            color: var(--primary-navy);
             padding: 0.35rem 0.8rem;
             border-radius: 15px;
             font-size: var(--text-xs);
             font-weight: var(--font-medium);
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(20, 184, 166, 0.25);
             transition: all 0.3s ease;
             min-height: 44px;
             min-width: 44px;
         }
 
         .project-tag:hover {
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             color: var(--white);
             border-color: transparent;
             transform: translateY(-2px);
@@ -1496,7 +1505,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 70% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 60%);
+            background: radial-gradient(circle at 70% 50%, rgba(20, 184, 166, 0.08) 0%, transparent 60%);
             pointer-events: none;
         }
 
@@ -1528,7 +1537,7 @@
         }
 
         .footer-description {
-            color: #c7d2fe;
+            color: #a7f3d0;
             font-size: var(--text-sm);
             line-height: var(--leading-normal);
             margin-bottom: 1rem;
@@ -1556,10 +1565,10 @@
 
         .social-link:hover,
         .social-link:focus-visible {
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             transform: translateY(-3px);
             border-color: transparent;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 25px rgba(20, 184, 166, 0.3);
         }
         
         .social-link:active {
@@ -1590,7 +1599,7 @@
             display: flex;
             align-items: center;
             gap: var(--space-sm);
-            color: #c7d2fe;
+            color: #a7f3d0;
             text-decoration: none;
             transition: all 0.3s ease;
             font-size: var(--text-sm);
@@ -1622,7 +1631,7 @@
         }
 
         .contact-link:hover .contact-icon-box {
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             border-color: transparent;
             transform: rotate(5deg);
         }
@@ -1635,7 +1644,7 @@
         }
 
         .footer-bottom p {
-            color: #a5b4fc;
+            color: #5eead4;
             font-size: var(--text-sm);
         }
 
@@ -1647,7 +1656,7 @@
         }
 
         .footer-bottom a:hover {
-            color: var(--primary-blue);
+            color: var(--accent-teal);
         }
 
         @media (max-width: 768px) {
@@ -1672,9 +1681,9 @@
 
         /* Hero Buttons - Enhanced UI */
         .hero-buttons {
-            margin-top: var(--space-xl);
+            margin-top: clamp(0.75rem, 2.5vh, 1.75rem);
             display: flex;
-            gap: var(--space-md);
+            gap: var(--space-sm);
             justify-content: center;
             flex-wrap: wrap;
             opacity: 0;
@@ -1778,24 +1787,24 @@
             height: 260px;
             border-radius: 20px;
             object-fit: cover;
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
-            border: 4px solid rgba(102, 126, 234, 0.2);
+            box-shadow: 0 20px 50px rgba(20, 184, 166, 0.25);
+            border: 4px solid rgba(20, 184, 166, 0.2);
         }
         .about-photo-placeholder {
             width: 200px;
             height: 260px;
             border-radius: 20px;
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 5rem;
             margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 20px 50px rgba(20, 184, 166, 0.25);
         }
         .about-tag {
             display: inline-block;
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             color: var(--white);
             padding: 0.3rem 1rem;
             border-radius: 20px;
@@ -1828,13 +1837,13 @@
             display: flex;
             align-items: center;
             gap: 0.4rem;
-            background: linear-gradient(135deg, #f0f4ff, #e6f0ff);
-            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: linear-gradient(135deg, #f0fdfb, #ccfbf1);
+            border: 1px solid rgba(20, 184, 166, 0.25);
             padding: 0.45rem 1rem;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--primary-purple);
+            color: var(--primary-navy);
             min-height: 44px;
             min-width: 44px;
         }
@@ -1867,23 +1876,14 @@
             overflow: hidden;
         }
         
-        .service-card:nth-child(1) {
-            grid-column: span 2;
-        }
-        
-        @media (max-width: 900px) {
-            .service-card:nth-child(1) { grid-column: span 1; }
-        }
-        
-        .service-card:nth-child(1),
-        .service-card:nth-child(6) {
-            background: linear-gradient(135deg, var(--white) 0%, #f0f9ff 100%);
+        .service-card:nth-child(odd) {
+            background: linear-gradient(135deg, var(--white) 0%, #f0fdfb 100%);
             border-left: 3px solid var(--accent-teal);
         }
         
-        .service-card:nth-child(3) {
-            background: linear-gradient(135deg, var(--white) 0%, #faf5ff 100%);
-            border-left: 3px solid var(--primary-purple);
+        .service-card:nth-child(even) {
+            background: linear-gradient(135deg, var(--white) 0%, #f0fdfb 100%);
+            border-left: 3px solid var(--accent-teal);
         }
         .service-card::after {
             content: '';
@@ -1917,10 +1917,6 @@
             margin-bottom: 0.75rem;
             display: inline-block;
         }
-        .service-card:nth-child(1) .service-icon,
-        .service-card:nth-child(6) .service-icon {
-            font-size: 2.5rem;
-        }
         .service-title {
             font-size: var(--text-lg);
             font-weight: var(--font-semibold);
@@ -1944,16 +1940,13 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            .service-card:nth-child(1) {
-                grid-column: span 1;
-            }
             .service-card {
                 text-align: center;
                 border-left: none;
                 border-top: 3px solid var(--accent-teal);
             }
-            .service-card:nth-child(3) {
-                border-top-color: var(--primary-purple);
+            .service-card:nth-child(even) {
+                border-top-color: var(--accent-teal);
             }
         }
 
@@ -1964,7 +1957,7 @@
             right: 1rem;
             left: auto;
             z-index: 9999;
-            background: var(--primary-gradient);
+            background: var(--gradient-accent);
             color: var(--white);
             border: none;
             padding: 0.45rem 1.1rem;
@@ -1992,9 +1985,11 @@
     <!-- Hero Section -->
     <header class="hero">
         <div class="hero-content">
+            <div class="hero-avatar-wrapper">
+                <img src="images/Kyrellos_Formal.jpg" alt="Kyrellos Tharwat - Software Development Lead" onerror="this.parentElement.innerHTML='<div style=\'width:clamp(120px,14vw,160px);height:clamp(120px,14vw,160px);border-radius:50%;background:var(--gradient-accent);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;z-index:2\'>👨‍💻</div>'">
+            </div>
             <h1 data-i18n="hero-name">Kyrellos Tharwat</h1>
             <p class="subtitle" data-i18n="hero-subtitle">Software Development Lead | Technical Lead | Senior Software Engineer — 12+ Years Experience</p>
-            <img src="images/Kyrellos_Formal.jpg" alt="Kyrellos Tharwat - Software Development Lead" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9IjEwMCIgZmlsbD0iI2NjN0U5YSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250Z3JkZSIgZm9udC1zaWU9IjE1cHgiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg=='" aria-label="Kyrellos Tharwat - Software Development Lead" tabindex="0">
             <div class="stats">
                 <div class="stat-item">
                     <div class="stat-number">12+</div>
@@ -2010,7 +2005,7 @@
                 </div>
             </div>
             <div class="hero-buttons">
-                <a href="mailto:keroo111@gmail.com" class="hero-btn hero-btn-primary" data-i18n="btn-start" aria-label="Start your project via email" tabindex="0">🚀 Start Your Project</a>
+                <a href="mailto:kyrellos.mousa@gmail.com" class="hero-btn hero-btn-primary" data-i18n="btn-start" aria-label="Start your project via email" tabindex="0">🚀 Start Your Project</a>
                 <a href="#about" class="hero-btn hero-btn-outline" data-i18n="btn-about" aria-label="Learn more about me" tabindex="0">👤 Learn More About Me</a>
                 <a href="Kyrellos_Tharwat_Resume_v3.pdf" class="hero-btn hero-btn-outline" data-i18n="btn-resume" download="Kyrellos_Tharwat_Resume_v3.pdf" aria-label="Download resume PDF" tabindex="0">📄 Download Resume</a>
             </div>
@@ -2378,19 +2373,9 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title" data-i18n="resume-title">Professional Resume</h2>
-                <p class="section-subtitle" data-i18n="resume-subtitle">Download my detailed resume for complete professional profile</p>
+                <p class="section-subtitle" data-i18n="resume-subtitle">A snapshot of my professional background, core competencies, and key achievements</p>
             </div>
             <div class="resume-content">
-                <div class="resume-download-section">
-                    <a href="Kyrellos_Tharwat_Resume_v3.pdf" class="resume-download" data-i18n="btn-download-full" download="Kyrellos_Tharwat_Resume_v3.pdf">
-                        <span class="resume-icon">📄</span>
-                        Download Full Resume
-                    </a>
-                    <a href="Kyrellos_Tharwat_Resume_v3.pdf" class="resume-download" data-i18n="btn-download-pdf" download="Kyrellos_Tharwat_Resume_v3.pdf">
-                        <span class="resume-icon">📑</span>
-                        Download PDF Version
-                    </a>
-                </div>
                 <div class="resume-preview">
                     <div class="resume-card">
                         <div class="resume-header">
@@ -2444,14 +2429,14 @@
                 أنا مستعد لمساعدتك بخبرة +12 سنة وفريق محترف.
             </p>
             <div class="cta-buttons">
-                <a href="mailto:keroo111@gmail.com" class="btn btn-primary" data-i18n="cta-btn1" aria-label="Send email to Kyrellos" tabindex="0">📧 ابعت إيميل الآن</a>
+                <a href="mailto:kyrellos.mousa@gmail.com" class="btn btn-primary" data-i18n="cta-btn1" aria-label="Send email to Kyrellos" tabindex="0">📧 ابعت إيميل الآن</a>
                 <a href="tel:+201283931081" class="btn btn-outline" data-i18n="cta-btn2" aria-label="Call Kyrellos" tabindex="0">📱 اتصل بي مباشرة</a>
                 <a href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" class="btn btn-outline" data-i18n="cta-btn3" aria-label="View LinkedIn profile" tabindex="0">💼 LinkedIn</a>
             </div>
         </div>
     </section>
 
-    <div style="background: var(--dark-gradient); text-align: center; padding: 1rem; color: #a5b4fc; font-size: 0.85rem; direction: ltr;">
+    <div style="background: var(--dark-gradient); text-align: center; padding: 1rem; color: #5eead4; font-size: 0.85rem; direction: ltr;">
         <span data-i18n="footer-copy">&copy; 2026 Kyrellos Tharwat. All rights reserved.</span>
     </div>
 </footer>
