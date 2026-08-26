@@ -236,6 +236,16 @@ html[dir="rtl"] .skip-link { transform: translateX(50%); }
   font-size: var(--t-hero);
   margin-bottom: var(--s-md);
 }
+.hero .h1-like {
+  font-family: var(--font-display);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  font-size: var(--t-xl);
+  margin-bottom: var(--s-md);
+}
+html[lang="ar"] .hero .h1-like { letter-spacing: 0; line-height: 1.45; }
 .hero .credential {
   color: var(--slate);
   font-size: var(--t-lg);
@@ -674,4 +684,5 @@ html.js .reveal.in { opacity: 1; transform: none; }
   .resume-sheet { border: none; padding: 0; margin: 0; }
   a { color: black; text-decoration: none; }
   .section { padding-block: 1rem; border-top: 1px solid #ccc; }
+  html.js .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
