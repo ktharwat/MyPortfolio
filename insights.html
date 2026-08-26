@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights — Kyrellos Tharwat</title>
+    <meta name="description" content="Field notes from modernizing systems that cannot afford downtime — by Kyrellos Tharwat, Software Development Lead.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%23FAF9F6' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
+    <script>(function(){try{var l=localStorage.getItem('kt-lang');if(l!=='en'&&l!=='ar'){l=(navigator.language||'').toLowerCase().indexOf('ar')===0?'ar':'en'}document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr'}catch(e){}})();</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link" data-i18n="skip">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="shell nav" aria-label="Primary">
+            <a class="brand" href="index.html">KT&nbsp;/&nbsp;KYRELLOS THARWAT</a>
+            <ul class="nav-links">
+                <li><a href="index.html#impact" data-i18n="nav-impact">Impact</a></li>
+                <li><a href="work.html" data-i18n="nav-work">Work</a></li>
+                <li><a href="leadership.html" data-i18n="nav-leadership">Leadership</a></li>
+                <li><a href="expertise.html" data-i18n="nav-expertise">Expertise</a></li>
+                <li><a href="insights.html" aria-current="page" data-i18n="nav-insights">Insights</a></li>
+                <li><a href="resume.html" data-i18n="nav-resume">Résumé</a></li>
+                <li><button id="lang-toggle" class="lang-btn" onclick="toggleLang()" aria-label="Toggle language between English and Arabic">عربي</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <article class="article shell">
+            <p class="kicker" data-i18n="in-kicker">Insights</p>
+            <h1 data-i18n="in-h1">Modernizing systems that can't afford downtime.</h1>
+            <p class="byline" data-i18n="in-byline">KYRELLOS THARWAT · SOFTWARE DEVELOPMENT LEAD · ALEXANDRIA</p>
+
+            <div class="reveal">
+                <p data-i18n="in-p0">Most legacy systems don't fail technically. They fail politically: the rewrite that demands an eighteen-month freeze, the vendor nobody can replace, the module only one semi-retired engineer understands. I have spent twelve years inheriting systems like these. Here is what actually works.</p>
+
+                <h2 data-i18n="in-h2-1">Five rules I migrate by</h2>
+                <ol>
+                    <li><strong data-i18n="in-r1t">Freeze contracts, not features.</strong> <span data-i18n="in-r1b">Stabilize APIs before touching implementations; every consumer keeps working while the internals change.</span></li>
+                    <li><strong data-i18n="in-r2t">Strangle, don't amputate.</strong> <span data-i18n="in-r2b">Extract one capability at a time behind a facade. The old system shrinks as the new one grows, and traffic shifts gradually.</span></li>
+                    <li><strong data-i18n="in-r3t">Put authentication at the edge first.</strong> <span data-i18n="in-r3b">OAuth/JWT in front of everything buys identity continuity even in the middle of a migration.</span></li>
+                    <li><strong data-i18n="in-r4t">Cache the slow paths you haven't fixed yet.</strong> <span data-i18n="in-r4b">Redis buys user-visible performance while structural work continues underneath it.</span></li>
+                    <li><strong data-i18n="in-r5t">Document the truth exactly once.</strong> <span data-i18n="in-r5b">Swagger/OpenAPI isn't paperwork — it's how parallel teams stop lying to each other about interfaces.</span></li>
+                </ol>
+
+                <p data-i18n="in-close">None of this is glamorous. All of it ships. And the business never stops — which was the requirement all along.</p>
+
+                <div class="note-box" data-i18n="in-note">More field notes on modernization and leading .NET teams are on the way — roughly one per quarter.</div>
+            </div>
+        </article>
+
+        <section class="contact-band" id="contact">
+            <div class="shell">
+                <p class="kicker" data-i18n="ct-kicker">Contact</p>
+                <h2 data-i18n="ct-h2">Disagree with one of the rules? Good — tell me why.</h2>
+                <p data-i18n="ct-p">I reply within one business day (GMT+2).</p>
+                <div class="hero-ctas">
+                    <a class="btn btn--light" href="mailto:kyrellos.mousa@gmail.com" data-i18n="ct-btn1">Email me</a>
+                    <a class="btn btn--outline-light" href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" rel="noopener" data-i18n="ct-btn2">LinkedIn profile ↗</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <div class="footer-row">
+                <span data-i18n="ft-tag">Kyrellos Tharwat — keeper of critical systems.</span>
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" rel="noopener">LinkedIn ↗</a>
+                    <a href="https://github.com/ktharwat" target="_blank" rel="noopener">GitHub ↗</a>
+                    <a href="mailto:kyrellos.mousa@gmail.com">kyrellos.mousa@gmail.com</a>
+                </nav>
+            </div>
+            <p class="footer-fine">© 2026 KYRELLOS THARWAT · ALEXANDRIA, EGYPT · REMOTE WORLDWIDE</p>
+        </div>
+    </footer>
+
+    <script>window.I18N = {
+        en: {
+            __title: 'Insights — Kyrellos Tharwat',
+            'skip': 'Skip to main content',
+            'nav-impact': 'Impact', 'nav-work': 'Work', 'nav-leadership': 'Leadership',
+            'nav-expertise': 'Expertise', 'nav-insights': 'Insights', 'nav-resume': 'Résumé',
+            'in-kicker': 'Insights',
+            'in-h1': "Modernizing systems that can't afford downtime.",
+            'in-byline': 'KYRELLOS THARWAT · SOFTWARE DEVELOPMENT LEAD · ALEXANDRIA',
+            'in-p0': "Most legacy systems don't fail technically. They fail politically: the rewrite that demands an eighteen-month freeze, the vendor nobody can replace, the module only one semi-retired engineer understands. I have spent twelve years inheriting systems like these. Here is what actually works.",
+            'in-h2-1': 'Five rules I migrate by',
+            'in-r1t': 'Freeze contracts, not features.',
+            'in-r1b': 'Stabilize APIs before touching implementations; every consumer keeps working while the internals change.',
+            'in-r2t': "Strangle, don't amputate.",
+            'in-r2b': 'Extract one capability at a time behind a facade. The old system shrinks as the new one grows, and traffic shifts gradually.',
+            'in-r3t': 'Put authentication at the edge first.',
+            'in-r3b': 'OAuth/JWT in front of everything buys identity continuity even in the middle of a migration.',
+            'in-r4t': "Cache the slow paths you haven't fixed yet.",
+            'in-r4b': 'Redis buys user-visible performance while structural work continues underneath it.',
+            'in-r5t': 'Document the truth exactly once.',
+            'in-r5b': "Swagger/OpenAPI isn't paperwork — it's how parallel teams stop lying to each other about interfaces.",
+            'in-close': "None of this is glamorous. All of it ships. And the business never stops — which was the requirement all along.",
+            'in-note': 'More field notes on modernization and leading .NET teams are on the way — roughly one per quarter.',
+            'ct-kicker': 'Contact',
+            'ct-h2': 'Disagree with one of the rules? Good — tell me why.',
+            'ct-p': 'I reply within one business day (GMT+2).',
+            'ct-btn1': 'Email me', 'ct-btn2': 'LinkedIn profile ↗',
+            'ft-tag': 'Kyrellos Tharwat — keeper of critical systems.'
+        },
+        ar: {
+            __title: 'مقالات — كيرلس ثروت',
+            'skip': 'الانتقال إلى المحتوى الرئيسي',
+            'nav-impact': 'الأثر', 'nav-work': 'الأعمال', 'nav-leadership': 'القيادة',
+            'nav-expertise': 'الخبرة', 'nav-insights': 'مقالات', 'nav-resume': 'السيرة الذاتية',
+            'in-kicker': 'مقالات',
+            'in-h1': 'تحديث أنظمة لا تحتمل التوقف.',
+            'in-byline': 'كيرلس ثروت · قائد تطوير برمجيات · الإسكندرية',
+            'in-p0': 'أغلب الأنظمة القديمة لا تفشل تقنيًا؛ إنها تفشل سياسيًا: إعادة الكتابة التي تطلب ثمانية عشر شهرًا من التجميد، والمورّد الذي لا يستطيع أحد استبداله، والوحدة التي لا يفهمها إلا مهندسٌ واحد انسحب روحيًا إلى المعاش. أمضيت اثني عشر عامًا في وراثة أنظمة كهذه. وهذا ما يعمل فعلًا.',
+            'in-h2-1': 'خمس قواعد أنتقل بها',
+            'in-r1t': 'جمِّد العقود، لا الميزات.',
+            'in-r1b': 'ثبّت واجهات الـAPI قبل لمس التنفيذات؛ كل مستهلك يظل يعمل بينما تتغير الأحشاء.',
+            'in-r2t': 'اخنق، ولا تبتِر.',
+            'in-r2b': 'استخلص قدرة واحدة في كل مرة خلف واجهة موحدة. يتقلص النظام القديم مع نمو الجديد، وتنتقل الحركة تدريجيًا.',
+            'in-r3t': 'ضع المصادقة عند الحافة أولًا.',
+            'in-r3b': 'OAuth/JWT أمام كل شيء يشتري لك استمرارية الهوية حتى في منتصف الهجرة.',
+            'in-r4t': 'خزّن المسارات البطيئة مؤقتًا قبل أن تصلحها.',
+            'in-r4b': 'Redis يشتري أداءً يراه المستخدم بينما العمل البنيوي مستمر تحته.',
+            'in-r5t': 'وثّق الحقيقة مرة واحدة بالضبط.',
+            'in-r5b': 'Swagger/OpenAPI ليست أوراقًا روتينية — إنها الطريقة التي يتوقف بها الفرق المتوازية عن كذب بعضها على بعض بشأن الواجهات.',
+            'in-close': 'لا شيء من هذا مبهر، وكل شيء من هذا يُسلَّم. والأعمال لا تتوقف — وكان ذلك هو الشرط منذ البداية.',
+            'in-note': 'مزيد من الدروس الميدانية حول التحديث وقيادة فرق .NET في الطريق — مقال تقريبًا كل فصل.',
+            'ct-kicker': 'تواصل',
+            'ct-h2': 'تخالفني في واحدة من القواعد؟ جيد — أخبرني لماذا.',
+            'ct-p': 'أرد خلال يوم عمل واحد (بتوقيت القاهرة GMT+2).',
+            'ct-btn1': 'راسلني بالبريد', 'ct-btn2': 'ملفي على LinkedIn ↗',
+            'ft-tag': 'كيرلس ثروت — أمين الأنظمة التي لا تحتمل التوقف.'
+        }
+    };</script>
+    <script src="assets/js/i18n.js"></script>
+</body>
+</html>

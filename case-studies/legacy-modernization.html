@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero-Downtime Legacy Modernization — Case Study — Kyrellos Tharwat</title>
+    <meta name="description" content="Modernizing an enterprise .NET estate toward services, OAuth/JWT and Redis caching without pausing the business. +25% data-retrieval performance, zero big-bang cutover.">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23101820'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='26' font-weight='700' fill='%23FAF9F6' text-anchor='middle'%3EKT%3C/text%3E%3C/svg%3E">
+    <script>(function(){try{var l=localStorage.getItem('kt-lang');if(l!=='en'&&l!=='ar'){l=(navigator.language||'').toLowerCase().indexOf('ar')===0?'ar':'en'}document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr'}catch(e){}})();</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Sora:wght@600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link" data-i18n="skip">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="shell nav" aria-label="Primary">
+            <a class="brand" href="../index.html">KT&nbsp;/&nbsp;KYRELLOS THARWAT</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#impact" data-i18n="nav-impact">Impact</a></li>
+                <li><a href="../work.html" aria-current="page" data-i18n="nav-work">Work</a></li>
+                <li><a href="../leadership.html" data-i18n="nav-leadership">Leadership</a></li>
+                <li><a href="../expertise.html" data-i18n="nav-expertise">Expertise</a></li>
+                <li><a href="../insights.html" data-i18n="nav-insights">Insights</a></li>
+                <li><a href="../resume.html" data-i18n="nav-resume">Résumé</a></li>
+                <li><button id="lang-toggle" class="lang-btn" onclick="toggleLang()" aria-label="Toggle language between English and Arabic">عربي</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <header class="cs-header shell">
+            <!-- TODO(Kyrellos): if you can disclose more (system domain, era,
+                 team size), add it here. Keep NDA-safe generalization otherwise. -->
+            <p class="kicker"><span data-i18n="cs-meta">Enterprise · NDA-safe · Technical Lead</span></p>
+            <h1 data-i18n="cs-title">Zero-downtime legacy modernization.</h1>
+            <p class="lede" data-i18n="cs-lede">Inheriting a .NET estate nobody wanted to touch and moving it toward services, modern auth and measured performance — while the business kept running.</p>
+            <div class="note-box" data-i18n="nda">Employer and client details are generalized per confidentiality agreements. Numbers are my own measurements on systems I owned.</div>
+        </header>
+
+        <section class="shell">
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-context">Context</h2>
+                <div>
+                    <p data-i18n="ctx">An enterprise system that had grown organically for years: a monolith at its center, direct database access from every direction, authentication bolted on rather than designed in. Business demand for change had not slowed down to match.</p>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-challenge">Challenge</h2>
+                <div>
+                    <p data-i18n="chl">Every modification was risky because everything touched everything. The business needed monthly feature delivery; the architecture made each delivery feel like surgery without anesthesia.</p>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-constraints">Constraints</h2>
+                <div>
+                    <ul>
+                        <li data-i18n="con-1">Feature work could not be frozen for a rewrite — ever</li>
+                        <li data-i18n="con-2">Data integrity was non-negotiable during and after migration</li>
+                        <li data-i18n="con-3">No budget for a parallel team; modernization had to ride alongside operations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-role">My role</h2>
+                <div>
+                    <p data-i18n="role">Technical lead of the modernization track: choosing what got extracted, in which order, behind which contracts — and defending the sequencing against pressure to "just rewrite it".</p>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-decisions">Decisions</h2>
+                <div>
+                    <div class="decision">
+                        <h3 data-i18n="d1t">Strangler extraction behind stable facades.</h3>
+                        <p data-i18n="d1b">Capabilities left the monolith one at a time behind service boundaries. The old system shrank as the new one grew, and traffic shifted gradually instead of flipping on a date.</p>
+                    </div>
+                    <div class="decision">
+                        <h3 data-i18n="d2t">Authentication moved to the edge first.</h3>
+                        <p data-i18n="d2b">OAuth/JWT in front of everything gave identity continuity even mid-migration. Every extracted service inherited a working auth story instead of inventing its own.</p>
+                    </div>
+                    <div class="decision">
+                        <h3 data-i18n="d3t">Redis caching in front of the slow paths we hadn't fixed yet.</h3>
+                        <p data-i18n="d3b">Users felt improvement immediately while structural work continued underneath. Performance became a running result, not a launch-day promise.</p>
+                    </div>
+                    <div class="decision">
+                        <h3 data-i18n="d4t">Swagger/OpenAPI as the single source of interface truth.</h3>
+                        <p data-i18n="d4b">Parallel teams stopped guessing about contracts. Documented-once interfaces ended the slowest argument in software: what does this endpoint actually return?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-execution">Execution</h2>
+                <div>
+                    <p data-i18n="exec">Capability by capability: extract, dual-run to verify parity, shift traffic, retire the old path. Data-layer redesign with Entity Framework and LINQ went hand-in-hand with query tuning. Heavy flows were decoupled through RabbitMQ messaging so failures could be isolated instead of contagious.</p>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-results">Results</h2>
+                <div>
+                    <div class="metric-grid">
+                        <div class="metric-cell">
+                            <div class="stat-number">+25%</div>
+                            <div class="stat-label" data-i18n="r1">data-retrieval performance after schema and query redesign</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label" data-i18n="r2">big-bang cutovers — every replacement happened gradually</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label" data-i18n="r3">of traffic under unified OAuth/JWT authentication</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-biz">Business impact</h2>
+                <div>
+                    <p data-i18n="biz">Feature velocity recovered because changes stopped being all-or-nothing. Operational risk fell with every retired legacy path. And the organization gained a repeatable pattern for modernization — not just one lucky migration.</p>
+                </div>
+            </div>
+
+            <div class="cs-section reveal">
+                <h2 data-i18n="sec-lessons">Lessons</h2>
+                <div>
+                    <p data-i18n="les">You cannot refactor what you cannot observe. Instrumentation came before everything else — and it was the cheapest decision of the entire effort.</p>
+                </div>
+            </div>
+
+            <p style="margin-block: var(--s-lg);">
+                <a class="text-link" href="clyxa-platform.html"><span data-i18n="next">Next case study: the Clyxa platform</span> <span class="arrow-flip">→</span></a>
+            </p>
+        </section>
+
+        <section class="contact-band" id="contact">
+            <div class="shell">
+                <p class="kicker" data-i18n="ct-kicker">Contact</p>
+                <h2 data-i18n="ct-h2">Inherit something like this? Let's talk.</h2>
+                <p data-i18n="ct-p">I reply within one business day (GMT+2).</p>
+                <div class="hero-ctas">
+                    <a class="btn btn--light" href="mailto:kyrellos.mousa@gmail.com" data-i18n="ct-btn1">Email me</a>
+                    <a class="btn btn--outline-light" href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" rel="noopener" data-i18n="ct-btn2">LinkedIn profile ↗</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="shell">
+            <div class="footer-row">
+                <span data-i18n="ft-tag">Kyrellos Tharwat — keeper of critical systems.</span>
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="https://www.linkedin.com/in/kyrellos-tharwat/" target="_blank" rel="noopener">LinkedIn ↗</a>
+                    <a href="https://github.com/ktharwat" target="_blank" rel="noopener">GitHub ↗</a>
+                    <a href="mailto:kyrellos.mousa@gmail.com">kyrellos.mousa@gmail.com</a>
+                </nav>
+            </div>
+            <p class="footer-fine">© 2026 KYRELLOS THARWAT · ALEXANDRIA, EGYPT · REMOTE WORLDWIDE</p>
+        </div>
+    </footer>
+
+    <script>window.I18N = {
+        en: {
+            __title: 'Zero-Downtime Legacy Modernization — Case Study — Kyrellos Tharwat',
+            'skip': 'Skip to main content',
+            'nav-impact': 'Impact', 'nav-work': 'Work', 'nav-leadership': 'Leadership',
+            'nav-expertise': 'Expertise', 'nav-insights': 'Insights', 'nav-resume': 'Résumé',
+            'cs-meta': 'ENTERPRISE · NDA-SAFE · TECHNICAL LEAD',
+            'cs-title': 'Zero-downtime legacy modernization.',
+            'cs-lede': 'Inheriting a .NET estate nobody wanted to touch and moving it toward services, modern auth and measured performance — while the business kept running.',
+            'nda': 'Employer and client details are generalized per confidentiality agreements. Numbers are my own measurements on systems I owned.',
+            'sec-context': 'Context', 'sec-challenge': 'Challenge', 'sec-constraints': 'Constraints',
+            'sec-role': 'My role', 'sec-decisions': 'Decisions', 'sec-execution': 'Execution',
+            'sec-results': 'Results', 'sec-biz': 'Business impact', 'sec-lessons': 'Lessons',
+            'ctx': 'An enterprise system that had grown organically for years: a monolith at its center, direct database access from every direction, authentication bolted on rather than designed in. Business demand for change had not slowed down to match.',
+            'chl': 'Every modification was risky because everything touched everything. The business needed monthly feature delivery; the architecture made each delivery feel like surgery without anesthesia.',
+            'con-1': 'Feature work could not be frozen for a rewrite — ever',
+            'con-2': 'Data integrity was non-negotiable during and after migration',
+            'con-3': 'No budget for a parallel team; modernization had to ride alongside operations',
+            'role': 'Technical lead of the modernization track: choosing what got extracted, in which order, behind which contracts — and defending the sequencing against pressure to \u201cjust rewrite it\u201d.',
+            'd1t': 'Strangler extraction behind stable facades.',
+            'd1b': 'Capabilities left the monolith one at a time behind service boundaries. The old system shrank as the new one grew, and traffic shifted gradually instead of flipping on a date.',
+            'd2t': 'Authentication moved to the edge first.',
+            'd2b': 'OAuth/JWT in front of everything gave identity continuity even mid-migration. Every extracted service inherited a working auth story instead of inventing its own.',
+            'd3t': "Redis caching in front of the slow paths we hadn't fixed yet.",
+            'd3b': 'Users felt improvement immediately while structural work continued underneath. Performance became a running result, not a launch-day promise.',
+            'd4t': 'Swagger/OpenAPI as the single source of interface truth.',
+            'd4b': 'Parallel teams stopped guessing about contracts. Documented-once interfaces ended the slowest argument in software: what does this endpoint actually return?',
+            'exec': 'Capability by capability: extract, dual-run to verify parity, shift traffic, retire the old path. Data-layer redesign with Entity Framework and LINQ went hand-in-hand with query tuning. Heavy flows were decoupled through RabbitMQ messaging so failures could be isolated instead of contagious.',
+            'r1': 'data-retrieval performance after schema and query redesign',
+            'r2': 'big-bang cutovers — every replacement happened gradually',
+            'r3': 'of traffic under unified OAuth/JWT authentication',
+            'biz': 'Feature velocity recovered because changes stopped being all-or-nothing. Operational risk fell with every retired legacy path. And the organization gained a repeatable pattern for modernization — not just one lucky migration.',
+            'les': 'You cannot refactor what you cannot observe. Instrumentation came before everything else — and it was the cheapest decision of the entire effort.',
+            'next': 'Next case study: the Clyxa platform',
+            'ct-kicker': 'Contact',
+            'ct-h2': 'Inherit something like this? Let\u2019s talk.',
+            'ct-p': 'I reply within one business day (GMT+2).',
+            'ct-btn1': 'Email me', 'ct-btn2': 'LinkedIn profile ↗',
+            'ft-tag': 'Kyrellos Tharwat — keeper of critical systems.'
+        },
+        ar: {
+            __title: 'تحديث أنظمة قديمة دون توقف — دراسة حالة — كيرلس ثروت',
+            'skip': 'الانتقال إلى المحتوى الرئيسي',
+            'nav-impact': 'الأثر', 'nav-work': 'الأعمال', 'nav-leadership': 'القيادة',
+            'nav-expertise': 'الخبرة', 'nav-insights': 'مقالات', 'nav-resume': 'السيرة الذاتية',
+            'cs-meta': 'مؤسسي · دون خرق السرية · قائد تقني',
+            'cs-title': 'تحديث أنظمة قديمة دون توقف.',
+            'cs-lede': 'ورثت منظومة ‎.NET‎ لا أحد يريد لمسها، فنقلتها نحو الخدمات والمصادقة الحديثة وأداء مقاس بالأرقام — بينما ظلت الأعمال تعمل.',
+            'nda': 'تفاصيل صاحب العمل والعملاء معماة التزامًا باتفاقيات السرية؛ والأرقام قياساتي على أنظمة كنت أملكها.',
+            'sec-context': 'السياق', 'sec-challenge': 'التحدّي', 'sec-constraints': 'المحددات',
+            'sec-role': 'دوري', 'sec-decisions': 'القرارات', 'sec-execution': 'التنفيذ',
+            'sec-results': 'النتائج', 'sec-biz': 'الأثر على الأعمال', 'sec-lessons': 'الدروس',
+            'ctx': 'نظام مؤسسي نما عضويًا لسنوات: وحدة كبيرة في المركز، ووصول مباشر لقاعدة البيانات من كل اتجاه، ومصادقة مثبتة بالشريط لا مصممة داخل النسيج. وطلب الأعمال للتغيير لم يتباطأ ليواكب ذلك.',
+            'chl': 'كل تعديل كان مخاطرة لأن كل شيء يلمس كل شيء. الأعمال احتاجت تسليم ميزات شهريًا؛ والمعمارية جعلت كل تسليم أشبه بجراحة بلا تخدير.',
+            'con-1': 'عمل الميزات لا يمكن تجميده لإعادة كتابة — أبدًا',
+            'con-2': 'سلامة البيانات غير قابلة للتفاوض خلال الهجرة وبعدها',
+            'con-3': 'لا ميزانية لفريق موازٍ؛ التحديث كان عليه أن يمتطي رحلة العمليات نفسها',
+            'role': 'قائد تقني لمسار التحديث: أختار ما يُستخلَص، وبأي ترتيب، وخلف أي عقود — وأدافع عن هذا التعاقب أمام ضغط «أعد الكتابة وانتهينا».',
+            'd1t': 'استخلاص على نمط الخنق خلف واجهات مستقرة.',
+            'd1b': 'غادرت القدرات الوحدة الكبيرة واحدةً واحدة خلف حدود خدمات. تقلص القديم بنمو الجديد، وتحولت الحركة تدريجيًا لا بانقلاب في تاريخ محدد.',
+            'd2t': 'المصادقة إلى الحافة أولًا.',
+            'd2b': 'OAuth/JWT أمام كل شيء منح استمرارية للهوية حتى وسط الهجرة. كل خدمة مستخلصة ورثت قصة مصادقة شغالة بدل أن تخترع واحدة خاصة.',
+            'd3t': 'تخزين Redis المؤقت أمام المسارات البطيئة التي لم نصلحها بعد.',
+            'd3b': 'حس المستخدمون بالتحسن فورًا بينما استمر العمل البنيوي تحتهم. صار الأداء نتيجة جارية، لا وعد يوم إطلاق.',
+            'd4t': 'Swagger/OpenAPI مصدر الحقيقة الوحيد للواجهات.',
+            'd4b': 'توقف الفرق المتوازية عن التخمين بشأن العقود. الواجهات الموثقة مرة واحدة أنهت أبطأ جدال في البرمجيات: ماذا يُرجع هذا الـendpoint فعلًا؟',
+            'exec': 'قدرةً بعد قدرة: استخلص، ثم تشغيل مزدوج للتحقق من التطابق، ثم تحويل الحركة، ثم إحالة المسار القديم إلى التقاعد. أعيد تصميم طبقة البيانات بـEntity Framework وLINQ جنباً إلى جنب مع ضبط الاستعلامات. وفُصلت التدفقات الثقيلة عبر رسائل RabbitMQ لتكون الأعطال معزولة لا معدية.',
+            'r1': 'أداء استرجاع البيانات بعد إعادة تصميم المخطط والاستعلامات',
+            'r2': 'انقلابات دفعة واحدة — كل استبدال جرى تدريجيًا',
+            'r3': 'من الحركة تحت مصادقة OAuth/JWT موحدة',
+            'biz': 'استعادت سرعة الميزات عافيتها لأن التغييرات لم تعد إما-كل-شيء-أو-لا-شيء. وهبطت مخاطر التشغيل مع كل مسار قديم يُقاعد. واكتسبت المنظومة نمطًا قابلًا لتكراره في التحديث — لا مجرد هجرة محظوظة واحدة.',
+            'les': 'لا يمكنك إعادة هيكلة ما لا تستطيع رصده. الرصد (Instrumentation) سبق كل شيء — وكان أرخص قرار في الجهد كله.',
+            'next': 'دراسة الحالة التالية: منصة كليكسا',
+            'ct-kicker': 'تواصل',
+            'ct-h2': 'ورثت شيئًا كهذا؟ لنتحدث.',
+            'ct-p': 'أرد خلال يوم عمل واحد (بتوقيت القاهرة GMT+2).',
+            'ct-btn1': 'راسلني بالبريد', 'ct-btn2': 'ملفي على LinkedIn ↗',
+            'ft-tag': 'كيرلس ثروت — أمين الأنظمة التي لا تحتمل التوقف.'
+        }
+    };</script>
+    <script src="../assets/js/i18n.js"></script>
+</body>
+</html>
